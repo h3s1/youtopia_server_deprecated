@@ -1,0 +1,99 @@
+POST http://localhost:3000/login
+content-type: application/json
+
+{
+    "id": "hello"
+}
+
+###
+
+POST http://localhost:3000/login
+content-type: application/json
+
+{
+    "id": "lovelyz"
+}
+
+###
+
+POST http://localhost:3000/login
+content-type: application/json
+
+{
+    "password": "12341234"
+}
+
+###
+
+POST http://localhost:3000/login
+content-type: application/json
+
+{
+    "password": "1q2w3e4r!"
+}
+
+###
+
+POST http://localhost:3000/login
+content-type: application/json
+
+{
+    "id": "hello",
+    "password": "12341234"
+}
+
+###
+
+POST http://localhost:3000/login
+content-type: application/json
+
+{
+    "id": "hello",
+    "password": "1q2w3e4r!"
+}
+
+###
+POST http://localhost:3000/login
+content-type: application/json
+
+{
+    "id": "lovelyz",
+    "password": "12341234"
+}
+
+###
+
+POST http://localhost:3000/login
+content-type: application/json
+
+{
+    "id": "lovelyz",
+    "password": "1q2w3e4r!"
+}
+
+###
+
+GET http://localhost:3000/article
+
+
+###
+
+GET http://localhost:3000/article/hello
+
+
+###
+
+GET http://localhost:3000/article/1
+
+
+###
+
+GET http://localhost:3000/article/4
+
+
+###
+
+GET http://localhost:3000/article/-10
+
+
+###
