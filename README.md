@@ -57,3 +57,30 @@
   }
 }
 </pre>
+
+* /comment/:no
+    - GET
+        + Request
+            - example: /comment/1
+        + Response
+            - content-type: application/json
+            - body : 아래 참조
+<pre>{
+  "status": "success",
+  "data": [
+    {
+      "no": 1,
+      "id": "chimchak",
+      "nickname": "침착맨",
+      "content": "그건 또 무슨 듣보잡 그룹이죠?",
+      "datetime": "2019-04-05 13:11:12"
+    },
+    {
+      "no": 2,
+      "id": "choerry",
+      "nickname": "카드값줘최리",
+      "content": "님 지랄하지 마세요;;",
+      "datetime": "2019-04-05 14:12:13"
+    }
+  ]
+}</pre>
