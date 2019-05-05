@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 9000;
 const PAGNATION_UNIT = 10;
 
 const {
-    rightUser,
+    users,
     loginMsgs,
     articleMsgs,
     articles,
@@ -27,65 +27,70 @@ app.post('/login', (req, res) => {
     const userData = req.body;
     
     if (!userData.id || !userData.password) {
-        res.json(loginMsgs.invalid);
+        res.status(400).json(loginMsgs.invalid.msg);
     }
-    else if (userData.id === rightUser.id && userData.password === rightUser.password) {
-        res.json(loginMsgs.success);
+    else if (users[userData.id] !== undefined && userData.password === users[userData.id].password) {
+        res.json(loginMsgs.success.msg);
     }
     else {
-        res.json(loginMsgs.fail);
+        res.status(400).json(loginMsgs.fail.msg);
     }
 });
 
 app.route('/article')
     .get((req, res) => {
-        const arr = []
-        const threshold = articles.length - PAGNATION_UNIT < 0 ? 0 : articles.length - PAGNATION_UNIT;
-        
-        for (let i = articles.length - 1; i >= threshold; i--) {
-            arr.push({
-                no: articles[i].no,
-                title: articles[i].title,
-                author: articles[i].author,
-                videoId: articles[i].videoId,
-                datetime: articles[i].datetime
-            });
+        const page = req.query.page === undefined ? 1 : parseInt(req.query.page);
+        const arr = [];
+        const keys = Object.keys(articles).map(e => parseInt(e)).sort((a, b) => a - b);
+        let pointer = keys[keys.length - 1] - (page - 1) * PAGNATION_UNIT;
+        let count = 0;
+
+        while (count < PAGNATION_UNIT) {
+            if (pointer <= 0) break;
+            if (articles[pointer] === undefined) {
+                pointer--;
+                continue;
+            }
+            let article = {
+                no: pointer,
+                title: articles[pointer].title,
+                img: 'https://img.youtube.com/vi/' + articles[pointer].videoId + '/0.jpg',
+                author: users[articles[pointer].authorId].nickname,
+                datetime: articles[pointer].datetime
+            }
+            pointer--;
+            arr.push(article);
+            count++;
         }
         res.json(arr);
     });
 
 app.get('/article/:no', (req, res) => {
     if (!Number.isInteger(parseInt(req.params.no))) {
-        res.json(articleMsgs.notNumber);
+        res.status(400).json(articleMsgs.notNumber.msg);
         return;
     }
     
     const no = parseInt(req.params.no);
-    
-
-    if (no > articles[articles.length - 1].no || no < 1) {
-        res.json(articleMsgs.notExist);
+    if (articles[no] === undefined) {
+        res.status(404).json(articleMsgs.notExist.msg);
     }
     else {
-        res.json({
-            status: 'success',
-            data: articles[no-1]
-        });
+        res.json(articles[no]);
     }
 })
 
 app.get('/comment/:no', (req, res) => {
     if (!Number.isInteger(parseInt(req.params.no))) {
-        res.json(commentMsgs.invalidNo);
+        res.status(400).json(commentMsgs.invalidNo.msg);
         return;
     }
 
     const no = parseInt(req.params.no);
 
-    res.json({
-        status: 'success',
-        data: comments[no-1]
-    })
+    res.json(
+        comments[no]
+    )
 })
 
 app.listen(PORT, () => {
