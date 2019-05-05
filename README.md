@@ -8,8 +8,9 @@
             - content-type : application/json
             - body : {"id" : "lovelyz", "password": "1q2w3e4r!"}
         + Response
+            - status : 200 OK
             - content-type : application/json
-            - body : {"status": "success", msg: ""}
+            - body : empty
 * /article
     - GET
         + Response
@@ -17,27 +18,71 @@
             - body : 아래 참조
 <pre>[
   {
-    "no": 3,
-    "title": "아이돌 글 좀 그만 올려라 십덕새기들아",
-    "author": "스피드웨건",
-    "videoId": "_XulUbBra5M",
-    "datetime": "2019-04-06 01:12:24"
+    "no":23,
+    "title":"이달의 소녀",
+    "img":"https://img.youtube.com/vi/_qJEoSa3Ie0/0.jpg",
+    "author":"카드값줘최리",
+    "datetime":"2019-03-14T18:01:01.000Z"
+    },
+  {
+    "no":22,
+    "title":"안녕하세요? 이것은 22번째 글입니다.",
+    "img":"https://img.youtube.com/vi/F8UXcVh-d5E/0.jpg",
+    "author":"이영종","datetime":"2019-03-09T15:00:01.000Z"
   },
   {
-    "no": 2,
-    "title": "이건 두번째 글임",
-    "author": "슈퍼스타케이",
-    "videoId": "v7qisJ_KuYI",
-    "datetime": "2019-04-05 13:13:25"
+    "no":21,
+    "title":"또 러블리즈네",
+    "img":"https://img.youtube.com/vi/40Z9-kr504w/0.jpg",
+    "author":"슈퍼스타케이","datetime":"2019-02-28T15:00:01.000Z"
   },
   {
-    "no": 1,
-    "title": "대망의 첫번째 글임",
-    "author": "카드값줘최리",
-    "videoId": "cG7FkoNKBzI",
-    "datetime": "2019-04-05 13:00:00"
-  }
-]</pre>
+    "no":20,"title":"심각하네",
+    "img":"https://img.youtube.com/vi/Rb2FyIsTnO4/0.jpg",
+    "author":"거니거니",
+    "datetime":"2019-02-10T03:03:01.000Z"
+  },
+  {
+    "no":19,"title":"이달의 소녀 한번 더 갑시다",
+    "img":"https://img.youtube.com/vi/XEOCbFJjRw0/0.jpg",
+    "author":"카드값줘최리",
+    "datetime":"2019-02-05T02:12:34.000Z"
+  },
+  {
+    "no":18,
+    "title":"러블리즈 노래도 하나 더 투척함",
+    "img":"https://img.youtube.com/vi/wMCoQaE0LvQ/0.jpg",
+    "author":"슈퍼스타케이",
+    "datetime":"2019-02-04T01:04:07.000Z"
+  },
+  {
+    "no":17,
+    "title":"이달소 노래 하나 더 투척함",
+    "img":"https://img.youtube.com/vi/cG7FkoNKBzI/0.jpg",
+    "author":"카드값줘최리",
+    "datetime":"2019-02-04T00:03:12.000Z"
+  },
+  {
+    "no":16,
+    "title":"새로운 세상 유토피아",
+    "img":"https://img.youtube.com/vi/ybpV8h-RPyk/0.jpg",
+    "author":"이영종",
+    "datetime":"2019-02-03T06:10:07.000Z"
+  },
+  {
+    "no":15,
+    "title":"채원님이 글이 없는 것도 이상하니까",
+    "img":"https://img.youtube.com/vi/zH_omFPqMO4/0.jpg",
+    "author":"공채원",
+    "datetime":"2019-02-03T04:01:01.000Z"
+  },
+  {
+    "no":14,
+    "title":"슬슬 제목 아이디어도 떨어져감",
+    "img":"https://img.youtube.com/vi/kPRA0W1kECg/0.jpg",
+    "author":"홍은진",
+    "datetime":"2019-02-03T01:03:01.000Z"
+}]</pre>
 * /article/:no
     - GET
         + Request
@@ -46,15 +91,11 @@
             - content-type : application/json
             - body : 아래 참조
 <pre>{
-  "status": "success",
-  "data": {
-    "no": 1,
-    "title": "대망의 첫번째 글임",
-    "videoId": "cG7FkoNKBzI",
-    "author": "카드값줘최리",
-    "content": "\b\b<p>이달의 소녀 파이팅~~~ ^ㅇ^</p>",
-    "datetime": "2019-04-05 13:00:00"
-  }
+  "title":"안녕하세요? 이것은 첫번째 글입니다.",
+  "videoId":"jNQXAC9IVRw",
+  "authorId":"zerobell",
+  "content":"<p>뭐요시발</p>",
+  "datetime":"2018-12-31T15:00:01.000Z"
 }
 </pre>
 
@@ -66,21 +107,13 @@
             - content-type: application/json
             - body : 아래 참조
 <pre>{
-  "status": "success",
-  "data": [
-    {
-      "no": 1,
-      "id": "chimchak",
-      "nickname": "침착맨",
-      "content": "그건 또 무슨 듣보잡 그룹이죠?",
-      "datetime": "2019-04-05 13:11:12"
-    },
-    {
-      "no": 2,
-      "id": "choerry",
-      "nickname": "카드값줘최리",
-      "content": "님 지랄하지 마세요;;",
-      "datetime": "2019-04-05 14:12:13"
-    }
-  ]
+  "1": {
+    "authorId":"choerry",
+    "content":"댓글 쓰기 귀찮다 진짜",
+    "datetime":"2019-01-09T16:01:01.000Z"
+  },
+  "2": {
+    "authorId":"zerobell",
+    "content":"더 이상 안 쓴다 진짜",
+    "datetime":"2019-03-09T16:01:01.000Z"}
 }</pre>
